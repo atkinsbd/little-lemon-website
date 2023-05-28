@@ -1,0 +1,77 @@
+main {
+    display: grid;
+    grid-template-columns: 180px repeat(6, 1fr) 180px;
+    grid-template-rows: 545px 140px repeat(3, 1fr);
+}
+
+.homepage-hero-container {
+    grid-column: 1 / span 8;
+    grid-row: 1 / span 1;
+    background-color: #495E57;
+}
+
+.homepage-hero-text {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 1;
+}
+
+.homepage-hero-text h1 {
+    font-family: "Markazi Text";
+    font-size: 64px;
+    font-weight: normal;
+    color: #F4CE14;
+}
+
+.homepage-hero-text h2 {
+    font-family: "Markazi Text";
+    font-size: 48px;
+    font-weight: normal;
+    color: #FFFFFF;
+}
+
+.homepage-hero-text p {
+    font-family: "Markazi Text";
+    font-size: 36px;
+    font-weight: normal;
+    color: #FFFFFF;
+    padding-right: 10%;
+}
+
+.homepage-hero-text button {
+    font-family: "Karla";
+    font-size: 32px;
+    font-weight: normal;
+    background-color: #F4CE14;
+    color: black;
+    width: 420px;
+    height: 72px;
+    border-radius: 10px;
+}
+
+.homepage-hero-image {
+    grid-column: 5 / span 3;
+    grid-row: 1 / span 2;
+    position: relative;
+}
+
+.homepage-hero-image img {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border-radius: 16px;
+}
+
+.homepage-specials-container {
+    grid-column: 1 / span 8;
+    grid-row: 2 / span 1;
+}
+
+.homepage-reviews-container {
+    grid-column: 1 / span 8;
+    grid-row: 3 / span 1;
+}
+
+.homepage-story-container {
+    grid-column: 1 / span 8;
+    grid-row: 4 / span 1;
+}
