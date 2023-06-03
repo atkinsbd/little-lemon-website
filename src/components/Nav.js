@@ -5,15 +5,13 @@ import "../styles/navbar.css"
 const Nav = () => {
     return (
         <nav className="nav-links">
+            <img
+                src={require("../assets/Logo.svg").default}
+                alt="Little lemon logo"
+                width={292}
+                height={79.12}
+            />
             <ul>
-                <li>
-                    <img 
-                        src={require("../assets/Logo.svg").default} 
-                        alt="Little lemon logo"
-                        width={292}
-                        height={79.12}
-                    />
-                </li>
                 <li>
                     <Link to="/">Home</Link>
                 </li>

@@ -1,0 +1,47 @@
+footer {
+    height: 300px;
+    background-color: #495E57;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1080px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-container img {
+    height: 190px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.footer-links {
+    align-items: left;
+}
+
+.footer-links h2 {
+    font-family: "Markazi Text";
+    font-size: 36px;
+    color: white;
+    font-weight: normal;
+}
+
+.footer-links ul {
+    align-items: left;
+    padding-left: 0%;
+}
+
+.footer-links li {
+    list-style-type: none;
+    font-family: "Karla";
+    font-size: 16px;
+    margin-top: 5%;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: white;
+}
