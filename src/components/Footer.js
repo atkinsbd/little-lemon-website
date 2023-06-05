@@ -42,16 +42,16 @@ const Footer = () => {
                     </h2>
                     <ul>
                         <li>
-                            <Link to="/">Address</Link>
+                            <Link to="/About">Address</Link>
                         </li>
                         <li>
                             <Link to="/About">Phone</Link>
                         </li>
                         <li>
-                            <Link to="/Menu">Email</Link>
+                            <Link to="/About">Email</Link>
                         </li>
                         <li>
-                            <Link to="/Reservation">Map</Link>
+                            <Link to="/About">Map</Link>
                         </li>
                     </ul>
                 </nav>
@@ -65,10 +65,10 @@ const Footer = () => {
                             <Link to="/">Facebook</Link>
                         </li>
                         <li>
-                            <Link to="/About">Instagram</Link>
+                            <Link to="/">Instagram</Link>
                         </li>
                         <li>
-                            <Link to="/Menu">Twitter</Link>
+                            <Link to="/">Twitter</Link>
                         </li>
                     </ul>
                 </nav>

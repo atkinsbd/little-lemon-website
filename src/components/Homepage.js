@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/homepage.css"
 
 const Homepage = () => {
@@ -12,7 +13,7 @@ const Homepage = () => {
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
-                        <button>Reserve table</button>
+                        <Link to={"/Reservation"}><button>Reserve table</button></Link>
                     </div>
                     <div className="image-section">
                         <img
@@ -30,37 +31,37 @@ const Homepage = () => {
                         <img
                             src={require("../assets/greek salad.jpg")}
                             alt="Greek salad special"
-                            width={"100%"}
-                            height={"50%"}
+                            // width={"100%"}
+                            // height={"50%"}
                         />
                         <h2 style={{ float: "left" }}>Greek Salad</h2> <h2 style={{ float: "right" }}>$12.99</h2>
                         <div style={{ clear: "both" }}></div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <h3>Order a delivery</h3>
+                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
                     </div>
                     <div className="card2">
                         <img
                             src={require("../assets/bruschetta.jpeg")}
                             alt="Bruschetta special"
-                            width={"100%"}
-                            height={"50%"}
+                            // width={"100%"}
+                            // height={"50%"}
                         />
                         <h2 style={{ float: "left" }}>Bruschetta</h2> <h2 style={{ float: "right" }}>$10.99</h2>
                         <div style={{ clear: "both" }}></div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <h3>Order a delivery</h3>
+                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
                     </div>
                     <div className="card3">
                         <img
                             src={require("../assets/lemon dessert.jpg")}
                             alt="Lemon dessert special"
-                            width={"100%"}
-                            height={"50%"}
+                            // width={"100%"}
+                            // height={"50%"}
                         />
                         <h2 style={{ float: "left" }}>Lemon dessert</h2> <h2 style={{ float: "right" }}>$5.99</h2>
                         <div style={{ clear: "both" }}></div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <h3>Order a delivery</h3>
+                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
                     </div>
                 </div>
             </div>

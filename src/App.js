@@ -3,6 +3,11 @@ import {Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import Homepage from './components/Homepage';
 import Footer from './components/Footer';
+import About from './components/About';
+import Menu from './components/Menu';
+import Reservation from './components/Reservation';
+import Order from './components/Order';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -10,11 +15,11 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/About' element={<Homepage />} />
-        <Route path='/Menu' element={<Homepage />} />
-        <Route path='/Reservation' element={<Homepage />} />
-        <Route path='/Order' element={<Homepage />} />
-        <Route path='/Login' element={<Homepage />} />
+        <Route path='/About' element={<About />} />
+        <Route path='/Menu' element={<Menu />} />
+        <Route path='/Reservation' element={<Reservation />} />
+        <Route path='/Order' element={<Order />} />
+        <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer/>
     </>

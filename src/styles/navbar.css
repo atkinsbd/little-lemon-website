@@ -1,4 +1,5 @@
-.nav-links {
+.nav-links,
+.nav-links-reduced {
     height: 100px;
     padding-left: 5%;
     padding-right: 5%;
@@ -9,20 +10,74 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  .nav-links ul {
+.nav-links ul {
     display: flex;
     width: 75%;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  .nav-links li {
+.nav-links li {
     list-style-type: none;
-  }
+}
 
-  .nav-links li a {
+.nav-links li a {
     text-decoration: none;
     color: black;
-  }
+}
+
+.nav-links-reduced {
+    display: none;
+}
+
+@media (max-width: 1188px) {
+    .nav-links-reduced {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+.hamburger {
+    position: fixed;
+    background: #fff;
+    padding: 20px 54px 40px 54px;
+    right: 0;
+    top: 100px;
+    /* width: 200px; */
+    margin: 0;
+    overflow: hidden;
+    z-index: 9;
+    font-family: "Markazi Text";
+    font-size: 48px;
+    border-radius: 0 0 0 16px;
+    box-shadow: 0 10px 15px -3px rgb(46 41 51 / 8%), 0 4px 6px -2px rgb(71 63 79 / 16%);
+    transition: transform ease 0.5s;
+    transform: translateX(100%);
+}
+
+.hamburger ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0;
+    margin: 0;
+}
+
+.hamburger li {
+    list-style-type: none;
+}
+
+.hamburger li a {
+    text-decoration: none;
+    color: black;
+}
+
+.hamburger.open {
+    transform: translateX(0%);
+}
