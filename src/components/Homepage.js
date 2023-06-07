@@ -27,41 +27,43 @@ const Homepage = () => {
             <div className="homepage-specials-container-outer">
                 <div className="homepage-specials-container">
                     <h1>Specials</h1>
-                    <div className="card1">
-                        <img
-                            src={require("../assets/greek salad.jpg")}
-                            alt="Greek salad special"
+                    <div className="scrollable-div">
+                        <div className="card1">
+                            <img
+                                src={require("../assets/greek salad.jpg")}
+                                alt="Greek salad special"
                             // width={"100%"}
                             // height={"50%"}
-                        />
-                        <h2 style={{ float: "left" }}>Greek Salad</h2> <h2 style={{ float: "right" }}>$12.99</h2>
-                        <div style={{ clear: "both" }}></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
-                    </div>
-                    <div className="card2">
-                        <img
-                            src={require("../assets/bruschetta.jpeg")}
-                            alt="Bruschetta special"
+                            />
+                            <h2 style={{ float: "left" }}>Greek Salad</h2> <h2 style={{ float: "right" }}>$12.99</h2>
+                            <div style={{ clear: "both" }}></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                            <Link to={"/Order"}><h3>Order a delivery</h3></Link>
+                        </div>
+                        <div className="card2">
+                            <img
+                                src={require("../assets/bruschetta.jpeg")}
+                                alt="Bruschetta special"
                             // width={"100%"}
                             // height={"50%"}
-                        />
-                        <h2 style={{ float: "left" }}>Bruschetta</h2> <h2 style={{ float: "right" }}>$10.99</h2>
-                        <div style={{ clear: "both" }}></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
-                    </div>
-                    <div className="card3">
-                        <img
-                            src={require("../assets/lemon dessert.jpg")}
-                            alt="Lemon dessert special"
+                            />
+                            <h2 style={{ float: "left" }}>Bruschetta</h2> <h2 style={{ float: "right" }}>$10.99</h2>
+                            <div style={{ clear: "both" }}></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                            <Link to={"/Order"}><h3>Order a delivery</h3></Link>
+                        </div>
+                        <div className="card3">
+                            <img
+                                src={require("../assets/lemon dessert.jpg")}
+                                alt="Lemon dessert special"
                             // width={"100%"}
                             // height={"50%"}
-                        />
-                        <h2 style={{ float: "left" }}>Lemon dessert</h2> <h2 style={{ float: "right" }}>$5.99</h2>
-                        <div style={{ clear: "both" }}></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                        <Link to={"/Order"}><h3>Order a delivery</h3></Link>
+                            />
+                            <h2 style={{ float: "left" }}>Lemon dessert</h2> <h2 style={{ float: "right" }}>$5.99</h2>
+                            <div style={{ clear: "both" }}></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                            <Link to={"/Order"}><h3>Order a delivery</h3></Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,37 +71,39 @@ const Homepage = () => {
             <div className="homepage-reviews-container-outer">
                 <div className="homepage-reviews-container">
                     <h1>Reviews</h1>
-                    <div className="card1">
-                        <div className="gold-stars">
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                    <div className="scrollable-div">
+                        <div className="card1">
+                            <div className="gold-stars">
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                            </div>
+                            <h2>Andrew</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                         </div>
-                        <h2>Andrew</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
-                    </div>
-                    <div className="card2">
-                        <div className="gold-stars">
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                        <div className="card2">
+                            <div className="gold-stars">
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                            </div>
+                            <h2>Alice</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                         </div>
-                        <h2>Alice</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
-                    </div>
-                    <div className="card3">
-                        <div className="gold-stars">
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                            <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                        <div className="card3">
+                            <div className="gold-stars">
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                            </div>
+                            <h2>Jamie</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                         </div>
-                        <h2>Jamie</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                     </div>
                 </div>
             </div>
