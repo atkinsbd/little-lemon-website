@@ -1,5 +1,4 @@
 div[class*="-container-outer"] {
-    padding: 1% 0 3% 0;
     width: 100%;
 }
 
@@ -14,6 +13,7 @@ div[class*="-container-outer"] div[class*="-container"] {
 
 .homepage-hero-container-outer {
     background-color: #495E57;
+    padding: 1% 0 3% 0;
 }
 
 .homepage-hero-container {
@@ -91,6 +91,7 @@ div[class*="-container-outer"] div[class*="-container"] {
 
 .homepage-specials-container-outer {
     flex-wrap: wrap;
+    padding: 1% 0 3% 0;
 }
 
 .homepage-specials-container {
@@ -155,6 +156,7 @@ div[class*="-container-outer"] div[class*="-container"] {
     background-color: #FBDABB;
     box-shadow: 0 0 14px 10px rgba(0, 0, 0, 0.25);
     flex-wrap: wrap;
+    padding: 1% 0 3% 0;
 }
 
 .homepage-reviews-container {
@@ -218,6 +220,10 @@ div[class*="-container-outer"] div[class*="-container"] {
     color: white;
 }
 
+.homepage-story-container-outer {
+    padding: 1% 0 3% 0;
+}
+
 .homepage-story-container {
     padding-left: 54px;
     padding-right: 54px;
@@ -267,19 +273,47 @@ div[class*="-container-outer"] div[class*="-container"] {
     z-index: 1;
 }
 
+@media screen and (max-width: 1188px) {
+    .homepage-story-container .image-section {
+        padding-top: 5%;
+    }
+}
+
 @media screen and (max-width: 1080px) {
     .homepage-hero-container .image-section img {
         height: 93%;
     }
+    .homepage-specials-container h1 {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .homepage-story-container .text-section p {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .homepage-story-container .text-section p {
+        font-size: 28px;
+    }
+    .homepage-story-container .image-section {
+        padding-top: 10%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .homepage-story-container .text-section p {
+        font-size: 26px;
+    }
+    .homepage-story-container .image-section {
+        padding-top: 15%;
+    }
 }
 
 @media screen and (max-width: 800px) {
-    div[class*="-container-outer"] {
-        padding: 0;
-        width: 100%;
-    }
     .homepage-hero-container-outer {
         background-color: #495e577d;
+        padding: 0;
     }
     div[class*="-container-outer"] div[class*="-container"] {
         position: relative;
@@ -319,6 +353,23 @@ div[class*="-container-outer"] div[class*="-container"] {
         z-index: -1;
         object-position: 0% 30%;
     }
+    .homepage-story-container .text-section {
+        width: 100%;
+    }
+    .homepage-story-container .image-section {
+        width: 100%;
+        padding-top: 0;
+    }
+    .homepage-story-container .image-section .top-image {
+        width: 60%;
+        top: 2%;
+        left: 5%;
+    }
+    .homepage-story-container .image-section .bottom-image {
+        width: 60%;
+        top: -22%;
+        left: 35%;
+    }
 }
 
 @media (max-width: 1188px) {
@@ -330,6 +381,9 @@ div[class*="-container-outer"] div[class*="-container"] {
 @media (max-width: 694px) {
     .homepage-specials-container div[class*="card"] { 
         flex: 100%;
+    }
+    .homepage-story-container .text-section p {
+        font-size: 24px;
     }
 }
 
@@ -361,5 +415,8 @@ div[class*="-container-outer"] div[class*="-container"] {
     }
     .homepage-reviews-container div[class*="card"] {
         flex: none;
+    }
+    .homepage-story-container .text-section p {
+        font-size: 20px;
     }
 }

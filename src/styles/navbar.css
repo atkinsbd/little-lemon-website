@@ -32,16 +32,6 @@
     display: none;
 }
 
-@media (max-width: 1188px) {
-    .nav-links-reduced {
-        display: flex;
-    }
-
-    .nav-links {
-        display: none;
-    }
-}
-
 .hamburger {
     position: fixed;
     background: #fff;
@@ -80,4 +70,14 @@
 
 .hamburger.open {
     transform: translateX(0%);
+}
+
+@media (max-width: 1188px) {
+    .nav-links-reduced {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
 }
