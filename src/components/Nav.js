@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css"
 import { RxHamburgerMenu } from 'react-icons/rx';
@@ -6,14 +6,14 @@ import { MdClose } from 'react-icons/md';
 
 const Nav = () => {
 
-    const [hamburgerOpen, setHamburgerOpen] = useState(false);
+    const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
     const toggleHamburger = () => {
         setHamburgerOpen(!hamburgerOpen)
     }
 
-    const ref = useRef();
-    useEffect(() => {
+    const ref = React.useRef();
+    React.useEffect(() => {
         const handler = (event) => {
             if (
                 hamburgerOpen &&
@@ -31,9 +31,8 @@ const Nav = () => {
     }, [hamburgerOpen]);
 
     return (
-        <nav>
-            <div className="nav-links">
-                <Link to="/" style={{ height: "84px" }}>
+        <nav className="nav-bar-top">
+            <Link to="/" style={{ height: "84px" }}>
                     <img
                         src={require("../assets/Logo.svg").default}
                         alt="Little lemon logo"
@@ -41,6 +40,7 @@ const Nav = () => {
                         height={79.12}
                     />
                 </Link>
+            <div className="nav-links">
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -64,14 +64,6 @@ const Nav = () => {
             </div>
 
             <div className="nav-links-reduced">
-                <Link to="/" style={{ height: "84px" }}>
-                    <img
-                        src={require("../assets/Logo.svg").default}
-                        alt="Little lemon logo"
-                        width={292}
-                        height={79.12}
-                    />
-                </Link>
                 {hamburgerOpen ?
                     <MdClose onClick={toggleHamburger} /> :
                     <RxHamburgerMenu onClick={toggleHamburger} />

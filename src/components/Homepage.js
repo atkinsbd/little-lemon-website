@@ -7,13 +7,13 @@ const Homepage = () => {
         <main>
             <div className="homepage-hero-container-outer">
                 <div className="homepage-hero-container">
-                    <div className="text-section">
+                    <div className="text-section" aria-label="About Little Lemon">
                         <h1>Little Lemon</h1>
                         <h2>Chicago</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
-                        <Link to={"/Reservation"}><button>Reserve table</button></Link>
+                        <Link to={"/Reservation"}><button aria-label="Click to reserve a table">Reserve table</button></Link>
                     </div>
                     <div className="image-section">
                         <img
@@ -25,7 +25,7 @@ const Homepage = () => {
             </div>
 
             <div className="homepage-specials-container-outer">
-                <div className="homepage-specials-container">
+                <div className="homepage-specials-container" aria-label="Our current specials">
                     <h1>Specials</h1>
                     <div className="scrollable-div">
                         <div className="card1">
@@ -69,7 +69,7 @@ const Homepage = () => {
             </div>
 
             <div className="homepage-reviews-container-outer">
-                <div className="homepage-reviews-container">
+                <div className="homepage-reviews-container" aria-label="Reviews from our customers">
                     <h1>Reviews</h1>
                     <div className="scrollable-div">
                         <div className="card1">
@@ -110,7 +110,7 @@ const Homepage = () => {
 
             <div className="homepage-story-container-outer">
                 <div className="homepage-story-container">
-                    <div className="text-section">
+                    <div className="text-section" aria-label="More about us">
                         <h1>
                             Our story
                         </h1>

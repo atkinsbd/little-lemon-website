@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="footer-container">
                 <img
                     src={require("../assets/lemon.png")}
-                    alt="Little lemon logo"
+                    alt="Little lemon compact logo"
                 />
                 <nav className="footer-links">
                     <h2>
