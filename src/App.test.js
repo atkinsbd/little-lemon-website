@@ -2,10 +2,11 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import BookingForm from './components/BookingForm';
+import { fetchAPI } from './services/api';
 
 
 test ('Renders booking form headings', () => {
-  render(<BookingForm availableTimes={["17:00", "18:00"]} dispatch={() => {}} />);
+  render(<BrowserRouter><BookingForm availableTimes={["17:00", "18:00"]} dispatch={() => {}} /></BrowserRouter>);
 
   const dateElement = screen.getByText("Choose date");
   const timeElement = screen.getByText("Choose time");
@@ -20,7 +21,7 @@ test ('Renders booking form headings', () => {
   expect(bookElement).toBeInTheDocument();
 })
 
-test('Initilises available times correctly', () => {
+test('Initilises and updates available times correctly', () => {
   render(<BrowserRouter><App /></BrowserRouter>);
 
   const reserveElement = screen.getByText("Reserve table");
@@ -29,64 +30,53 @@ test('Initilises available times correctly', () => {
 
   fireEvent.click(reserveElement);
 
-  const dateElement = screen.getByText("Choose date");
+  const dateElement = screen.getByLabelText("Choose date");
 
   expect(dateElement).toBeInTheDocument();
 
-  const timeSelect = screen.getByLabelText("Choose time");
+  const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00",
+    "19:30", "20:00", "20:30", "21:00", "21:30",
+    "22:00", "22:30"]
 
-  const timeSelectChildren = timeSelect.children;
+  let bookedTimes = fetchAPI(new Date());
 
-  const timeOptions = Array.from(timeSelectChildren)
+  let availableTimes = possibleBookingTimes.filter(function (item) {
+    return bookedTimes.indexOf(item) < 0;
+  });
+
+  let timeSelect = screen.getByLabelText("Choose time");
+
+  let timeSelectChildren = timeSelect.children;
+
+  let timeOptions = Array.from(timeSelectChildren)
     .map(obj => obj.textContent);
 
-  expect(timeOptions).toStrictEqual(["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"])
+  expect(timeOptions).toStrictEqual(availableTimes);
+
+
+  let tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1)
+
+  fireEvent.change(dateElement, { target: { value: tomorrow.toISOString().substring(0,10)}})
+
+  bookedTimes = fetchAPI(tomorrow);
+
+  availableTimes = possibleBookingTimes.filter(function (item) {
+    return bookedTimes.indexOf(item) < 0;
+  });
+
+  timeSelect = screen.getByLabelText("Choose time");
+
+  timeSelectChildren = timeSelect.children;
+
+  timeOptions = Array.from(timeSelectChildren)
+    .map(obj => obj.textContent);
+
+  
+
+  expect(timeOptions).toStrictEqual(availableTimes);
 
   const homeLogo = screen.getByAltText("Little lemon logo");
   fireEvent.click(homeLogo);
 
-})
-
-test('Updates available times correctly based on selected date', () => {
-
-  render(<BrowserRouter><App /></BrowserRouter>);
-
-  const reserveElement = screen.getByText("Reserve table");
-
-  expect(reserveElement).toBeInTheDocument();
-
-  fireEvent.click(reserveElement);
-
-  var today = new Date();
-  var tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1)
-  tomorrow = tomorrow.toISOString().substring(0,10);
-  today = today.toISOString().substring(0,10);
-
-  const dateSelect = screen.getByLabelText("Choose date");
-
-  fireEvent.change(dateSelect, { target: { value: tomorrow}})
-
-  var timeSelect = screen.getByLabelText("Choose time");
-
-  var timeSelectChildren = timeSelect.children;
-
-  var timeOptions = Array.from(timeSelectChildren)
-    .map(obj => obj.textContent);
-
-  expect(timeOptions).toStrictEqual(["17:00"])
-
-  fireEvent.change(dateSelect, { target: { value: today}})
-
-  var timeSelect = screen.getByLabelText("Choose time");
-
-  var timeSelectChildren = timeSelect.children;
-
-  var timeOptions = Array.from(timeSelectChildren)
-    .map(obj => obj.textContent);
-
-  expect(timeOptions).toStrictEqual(["16:00", "17:00"])
-
-  const homeLogo = screen.getByAltText("Little lemon logo");
-  fireEvent.click(homeLogo);
 })
