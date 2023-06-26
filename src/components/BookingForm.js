@@ -2,18 +2,33 @@ import React, { useEffect } from "react";
 import "../styles/bookingform.css"
 import { fetchAPI, submitAPI } from '../services/api';
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+
 
 const BookingForm = () => {
 
-    const updateTimes = (state, action) => {
+    const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00",
+        "19:30", "20:00", "20:30", "21:00", "21:30",
+        "22:00", "22:30"]
 
-        const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00", 
-                                    "19:30", "20:00", "20:30", "21:00", "21:30",
-                                     "22:00", "22:30"]
+
+    const updateTimes = (state, action) => {
 
         const bookedTimes = fetchAPI(new Date(action.type));
 
-        const availableTimes = possibleBookingTimes.filter(function(item) {
+        const availableTimes = possibleBookingTimes.filter(function (item) {
+            return bookedTimes.indexOf(item) < 0;
+        });
+
+        return availableTimes;
+    }
+
+    const initialiseTimes = () => {
+
+        const bookedTimes = fetchAPI(new Date());
+
+        const availableTimes = possibleBookingTimes.filter(function (item) {
             return bookedTimes.indexOf(item) < 0;
         });
 
@@ -28,53 +43,94 @@ const BookingForm = () => {
 
         if (submitted) {
             navigate("/Confirmed booking");
+        } else {
+            console.log("Not submitted");
         }
     }
 
+    const [availableTimes, dispatch] = React.useReducer(updateTimes, [], initialiseTimes);
+
     const today = new Date();
+    const fourWeeksAway = new Date();
+    fourWeeksAway.setDate(today.getDate() + 28);
 
-    const [availableTimes, dispatch] = React.useReducer(updateTimes, []);
-
-    const [date, setDate] = React.useState(today.toISOString().substring(0, 10));
-    const [time, setTime] = React.useState(availableTimes[0]);
-    const [guests, setGuests] = React.useState("1");
-    const [occasion, setOccasion] = React.useState();
+    const formik = useFormik({
+        initialValues: {
+            date: today.toISOString().substring(0, 10),
+            time: availableTimes[0],
+            guests: "1",
+            occasion: ""
+        },
+        onSubmit: (values) => {submitForm(values)},
+        validationSchema: Yup.object({
+            date: Yup.date()
+                .required("Required")
+                .max(fourWeeksAway.toISOString().substring(0, 10), "Call us to book more than 4 weeks in advance")
+                .min(today.toISOString().substring(0, 10), "You can't eat in the past!"),
+            time: Yup.string().required("Required"),
+            guests: Yup.number().required("Required")
+                .min(1, "Must be at least 1 guest")
+                .max(10, "For bookings of more than 10, please call us")
+        }),
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        submitForm(e);
+        formik.handleSubmit();
     }
 
-    const handleDateChange = (e) => {
-        setDate(e.target.value)
-    }
+    useEffect(() => { dispatch({ type: formik.values.date }) }, [formik.values.date]);
 
-    useEffect(() => dispatch({ type: date }), [date])
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="res-date">Choose date</label>
+            <label htmlFor="date">Choose date</label>
             <input
                 type="date"
-                id="res-date"
-                value={date}
-                onChange={handleDateChange}
+                id="date"
+                name="date"
+                value={formik.values.date}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
             />
-            <label htmlFor="res-time">Choose time</label>
-            <select id="res-time" value={time} onChange={(e) => setTime(e.target.value)}>
+            {formik.errors.date && formik.touched.date ? <div>{formik.errors.date}</div> : null}
+            <label htmlFor="time">Choose time</label>
+            <select
+                id="time"
+                name="time"
+                value={formik.values.time}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            >
                 {availableTimes.map((time, i) =>
                     <option key={i}>{time}</option>
                 )}
             </select>
+            {formik.errors.time && formik.touched.time ? <div>{formik.errors.time}</div> : null}
             <label htmlFor="guests">Number of guests</label>
-            <input type={"number"} id="guests" value={guests} min="1" max="10" onChange={(e) => setGuests(e.target.value)} />
+            <input
+                type={"number"}
+                id="guests"
+                name="guests"
+                value={formik.values.guests}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+            {formik.errors.guests && formik.touched.guests ? <div>{formik.errors.guests}</div> : null}
             <label htmlFor="occasion">Occasion</label>
-            <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
+            <select
+                id="occasion"
+                name="occasion"
+                value={formik.values.occasion}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            >
                 <option>Select occasion</option>
                 <option>Birthday</option>
                 <option>Anniversary</option>
                 <option>Engagement</option>
             </select>
+            {formik.errors.occasion && formik.touched.occcasion ? <div>{formik.errors.occasion}</div> : null}
             <input type="submit" value="Confirm booking" />
         </form>
     );

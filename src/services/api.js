@@ -22,7 +22,8 @@ const fetchAPI = function(date) {
     return result;
 };
 const submitAPI = function(formData) {
-    return true;
+    const random = Math.random();
+    return (random < 0.5);
 };
 
 export {fetchAPI, submitAPI};
