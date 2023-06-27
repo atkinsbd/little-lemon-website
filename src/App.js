@@ -9,7 +9,6 @@ import Reservation from './components/Reservation';
 import Order from './components/Order';
 import Login from './components/Login';
 import React from "react";
-import AlertMessage from './components/AlertMessage';
 
 function App() {
 
@@ -25,7 +24,6 @@ function App() {
         <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer/>
-      {/* <AlertMessage /> */}
     </>
   );
 }

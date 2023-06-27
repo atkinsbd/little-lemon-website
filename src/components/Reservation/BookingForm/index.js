@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./style.css"
 import { fetchAPI, submitAPI } from '../../../services/api';
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import {
@@ -14,11 +13,6 @@ import {useAlertContext} from "../../../context/alertContext";
 
 const BookingForm = () => {
     const { onOpen } = useAlertContext();
-
-    // const [isOpen, setIsOpen] = useState(false);
-    // const cancelRef = React.useRef();
-    // const [submitted, setSubmitted] = useState(false);
-    // const [message, setMessage] = useState("");
 
     const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00",
         "19:30", "20:00", "20:30", "21:00", "21:30",
@@ -47,20 +41,14 @@ const BookingForm = () => {
         return availableTimes;
     }
 
-    const navigate = useNavigate();
-
     const submitForm = (formData) => {
 
         const submitted = submitAPI(formData);
 
         if (submitted) {
             onOpen("success", "Success!");
-            // setSubmitted(true);
-            // setMessage("Booking confirmed!");
         } else {
             onOpen("error", "Uh oh!");
-            // setSubmitted(false);
-            // setMessage("Something went wrong, try again.");
         }
     }
 
