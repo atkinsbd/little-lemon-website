@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .nav-links,
 .nav-links-reduced {
     height: 100%;
@@ -50,7 +51,6 @@
     padding: 20px 54px 40px 54px;
     right: 0;
     top: 100px;
-    /* width: 200px; */
     margin: 0;
     overflow: hidden;
     z-index: 9;

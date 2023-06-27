@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/homepage.css"
+import "./style.css";
 
 const Homepage = () => {
     return (
@@ -17,7 +17,7 @@ const Homepage = () => {
                     </div>
                     <div className="image-section">
                         <img
-                            src={require("../assets/restaurantfood.jpg")}
+                            src={require("../../assets/restaurantfood.jpg")}
                             alt="Little lemon restaurant food"
                         />
                     </div>
@@ -30,7 +30,7 @@ const Homepage = () => {
                     <div className="scrollable-div">
                         <div className="card1">
                             <img
-                                src={require("../assets/greek salad.jpg")}
+                                src={require("../../assets/greek salad.jpg")}
                                 alt="Greek salad special"
                             // width={"100%"}
                             // height={"50%"}
@@ -42,7 +42,7 @@ const Homepage = () => {
                         </div>
                         <div className="card2">
                             <img
-                                src={require("../assets/bruschetta.jpeg")}
+                                src={require("../../assets/bruschetta.jpeg")}
                                 alt="Bruschetta special"
                             // width={"100%"}
                             // height={"50%"}
@@ -54,7 +54,7 @@ const Homepage = () => {
                         </div>
                         <div className="card3">
                             <img
-                                src={require("../assets/lemon dessert.jpg")}
+                                src={require("../../assets/lemon dessert.jpg")}
                                 alt="Lemon dessert special"
                             // width={"100%"}
                             // height={"50%"}
@@ -74,32 +74,32 @@ const Homepage = () => {
                     <div className="scrollable-div">
                         <div className="card1">
                             <div className="gold-stars">
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
                             </div>
                             <h2>Andrew</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                         </div>
                         <div className="card2">
                             <div className="gold-stars">
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
                             </div>
                             <h2>Alice</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
                         </div>
                         <div className="card3">
                             <div className="gold-stars">
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
-                                <img src={require("../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
+                                <img src={require("../../assets/gold-star.png")} alt="Gold star" />
                             </div>
                             <h2>Jamie</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
@@ -119,8 +119,8 @@ const Homepage = () => {
                         </p>
                     </div>
                     <div className="image-section">
-                        <img src={require("../assets/Mario and Adrian A.jpg")} alt="Chefs at work" width={"325px"} className="top-image" />
-                        <img src={require("../assets/Mario and Adrian B.jpg")} alt="Chefs at work" width={"325px"} className="bottom-image" />
+                        <img src={require("../../assets/Mario and Adrian A.jpg")} alt="Chefs at work" width={"325px"} className="top-image" />
+                        <img src={require("../../assets/Mario and Adrian B.jpg")} alt="Chefs at work" width={"325px"} className="bottom-image" />
                     </div>
                 </div>
             </div>

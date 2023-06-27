@@ -9,8 +9,7 @@ import Reservation from './components/Reservation';
 import Order from './components/Order';
 import Login from './components/Login';
 import React from "react";
-import ConfirmedBooking from './components/ConfirmedBooking';
-
+import AlertMessage from './components/AlertMessage';
 
 function App() {
 
@@ -22,11 +21,11 @@ function App() {
         <Route path='/About' element={<About />} />
         <Route path='/Menu' element={<Menu />} />
         <Route path='/Reservation' element={<Reservation />} />
-        <Route path='/Confirmed booking' element={<ConfirmedBooking />} />
         <Route path='/Order' element={<Order />} />
         <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer/>
+      {/* <AlertMessage /> */}
     </>
   );
 }

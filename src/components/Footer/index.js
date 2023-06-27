@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/footer.css"
+import "./style.css"
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className="footer">
             <div className="footer-container">
                 <img
-                    src={require("../assets/lemon.png")}
+                    src={require("../../assets/lemon.png")}
                     alt="Little lemon compact logo"
                 />
                 <nav className="footer-links">

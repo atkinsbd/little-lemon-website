@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/navbar.css"
+import "./style.css";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { MdClose } from 'react-icons/md';
 
@@ -34,7 +34,7 @@ const Nav = () => {
         <nav className="nav-bar-top">
             <Link to="/" style={{ height: "84px" }}>
                     <img
-                        src={require("../assets/Logo.svg").default}
+                        src={require("../../assets/Logo.svg").default}
                         alt="Little lemon logo"
                         width={292}
                         height={79.12}

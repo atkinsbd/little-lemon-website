@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from "react";
-import "../styles/bookingform.css"
-import { fetchAPI, submitAPI } from '../services/api';
+import "./style.css"
+import { fetchAPI, submitAPI } from '../../../services/api';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import {
-    Box,
     FormControl,
     FormErrorMessage,
-    FormLabel,
-    Input,
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogContent,
-    AlertDialogHeader,
-    AlertDialogOverlay,
-    AlertDialogCloseButton
+    Input
 } from "@chakra-ui/react";
+import {useAlertContext} from "../../../context/alertContext";
 
 
 const BookingForm = () => {
+    const { onOpen } = useAlertContext();
 
-    const [isOpen, setIsOpen] = useState(false);
-    const cancelRef = React.useRef();
-    const [submitted, setSubmitted] = useState(false);
-    const [message, setMessage] = useState("");
+    // const [isOpen, setIsOpen] = useState(false);
+    // const cancelRef = React.useRef();
+    // const [submitted, setSubmitted] = useState(false);
+    // const [message, setMessage] = useState("");
 
     const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00",
         "19:30", "20:00", "20:30", "21:00", "21:30",
@@ -60,13 +54,13 @@ const BookingForm = () => {
         const submitted = submitAPI(formData);
 
         if (submitted) {
-            setIsOpen(true);
-            setSubmitted(true);
-            setMessage("Booking confirmed!");
+            onOpen("success", "Success!");
+            // setSubmitted(true);
+            // setMessage("Booking confirmed!");
         } else {
-            setIsOpen(true);
-            setSubmitted(false);
-            setMessage("Something went wrong, try again.");
+            onOpen("error", "Uh oh!");
+            // setSubmitted(false);
+            // setMessage("Something went wrong, try again.");
         }
     }
 
@@ -104,7 +98,6 @@ const BookingForm = () => {
     useEffect(() => { dispatch({ type: formik.values.date }) }, [formik.values.date]);
 
     return (
-        <Box>
             <form onSubmit={handleSubmit}>
                 <FormControl isInvalid={formik.errors.date}>
                     <label htmlFor="date">Choose date</label>
@@ -155,22 +148,6 @@ const BookingForm = () => {
                 </FormControl>
                 <input type="submit" value="Confirm booking" />
             </form>
-            <AlertDialog
-                isOpen={isOpen}
-                leastDestructiveRef={cancelRef}
-                onClose={() => setIsOpen(false)}
-            >
-                <AlertDialogOverlay>
-                    <AlertDialogContent py={4} backgroundColor={submitted ? '#81C784' : '#FF8A65'}>
-                        <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                            {submitted ? 'All good!' : 'Oops!'}
-                        </AlertDialogHeader>
-                        <AlertDialogBody>{message}</AlertDialogBody>
-                        <AlertDialogCloseButton />
-                    </AlertDialogContent>
-                </AlertDialogOverlay>
-            </AlertDialog>
-        </Box>
     );
 };
 

@@ -1,4 +1,4 @@
-footer {
+.footer {
     height: 280px;
     background-color: #495E57;
 }
@@ -50,7 +50,7 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
-    footer {
+    .footer {
         height: 250px;
     }
     .footer-container {
@@ -63,7 +63,7 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
-    footer {
+    .footer {
         height: 180px;
     }
     .footer-links h2 {
@@ -81,7 +81,7 @@ footer {
 }
 
 @media screen and (max-width: 450px) {
-    footer {
+    .footer {
         height: 140px;
     }
     .footer-container {

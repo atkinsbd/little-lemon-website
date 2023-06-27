@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "../Navigation";
 import React from "react";
 
 const Header = () => {
