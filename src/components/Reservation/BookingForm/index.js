@@ -1,18 +1,29 @@
 import React, { useEffect } from "react";
 import "./style.css"
-import { fetchAPI, submitAPI } from '../../../services/api';
+import { fetchAPI } from '../../../services/api';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import {
     FormControl,
     FormErrorMessage,
-    Input
+    FormLabel,
+    Input,
+    Select,
+    Box,
+    Text,
+    Flex,
+    Spacer,
+    Button
 } from "@chakra-ui/react";
-import {useAlertContext} from "../../../context/alertContext";
+import { Rate } from "antd";
+import { UserOutlined } from '@ant-design/icons';
+import useSubmit from "../../../hooks/useSubmit";
+import { useAlertContext } from "../../../context/alertContext";
 
 
 const BookingForm = () => {
-    const { onOpen } = useAlertContext();
+    const { postReserve } = useSubmit();
+    const { isLoading } = useAlertContext();
 
     const possibleBookingTimes = ["17:00", "17:30", "18:00", "18:30", "19:00",
         "19:30", "20:00", "20:30", "21:00", "21:30",
@@ -41,17 +52,6 @@ const BookingForm = () => {
         return availableTimes;
     }
 
-    const submitForm = (formData) => {
-
-        const submitted = submitAPI(formData);
-
-        if (submitted) {
-            onOpen("success", "Success!");
-        } else {
-            onOpen("error", "Uh oh!");
-        }
-    }
-
     const [availableTimes, dispatch] = React.useReducer(updateTimes, [], initialiseTimes);
 
     const today = new Date();
@@ -62,10 +62,15 @@ const BookingForm = () => {
         initialValues: {
             date: today.toISOString().substring(0, 10),
             time: availableTimes[0],
-            guests: "1",
+            guests: 1,
             occasion: ""
         },
-        onSubmit: (values) => { submitForm(values) },
+        onSubmit: async (values, helpers) => { 
+            const confirmed = await postReserve("", values);
+            if (confirmed === "success") {
+                helpers.resetForm();
+            };
+        },
         validationSchema: Yup.object({
             date: Yup.date()
                 .required("Required")
@@ -73,8 +78,8 @@ const BookingForm = () => {
                 .min(today.toISOString().substring(0, 10), "You can't eat in the past!"),
             time: Yup.string().required("Required"),
             guests: Yup.number().required("Required")
-                .min(1, "Must be at least 1 guest")
-                .max(10, "For bookings of more than 10, please call us")
+            .min(1, "Must be at least 1 guest")
+            // .max(10, "For bookings of more than 10, please call us")
         }),
     });
 
@@ -86,56 +91,74 @@ const BookingForm = () => {
     useEffect(() => { dispatch({ type: formik.values.date }) }, [formik.values.date]);
 
     return (
-            <form onSubmit={handleSubmit}>
-                <FormControl isInvalid={formik.errors.date}>
-                    <label htmlFor="date">Choose date</label>
-                    <Input
-                        type="date"
-                        id="date"
-                        name="date"
-                        {...formik.getFieldProps("date")}
-                    />
-                    <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={formik.errors.time && formik.touched.time}>
-                    <label htmlFor="time">Choose time</label>
-                    <select
-                        id="time"
-                        name="time"
-                        {...formik.getFieldProps("time")}
-                    >
-                        {availableTimes.map((time, i) =>
-                            <option key={i}>{time}</option>
-                        )}
-                    </select>
-                    <FormErrorMessage>{formik.errors.time}</FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={formik.errors.guests && formik.touched.guests}>
-                    <label htmlFor="guests">Number of guests</label>
-                    <input
-                        type={"number"}
+        <form onSubmit={handleSubmit}>
+            <FormControl isInvalid={formik.errors.date}>
+                <FormLabel htmlFor="date">Choose date</FormLabel>
+                <Input
+                    type="date"
+                    id="date"
+                    name="date"
+                    {...formik.getFieldProps("date")}
+                    size='lg'
+                />
+                <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={formik.errors.time && formik.touched.time}>
+                <FormLabel htmlFor="time">Choose time</FormLabel>
+                <Select
+                    id="time"
+                    name="time"
+                    {...formik.getFieldProps("time")}
+                    size='lg'
+                >
+                    {availableTimes.map((time, i) =>
+                        <option key={i}>{time}</option>
+                    )}
+                </Select>
+                <FormErrorMessage>{formik.errors.time}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={formik.errors.guests}>
+                <FormLabel htmlFor="guests">Number of guests</FormLabel>
+                <Flex align={"center"}>
+                    <Rate
                         id="guests"
                         name="guests"
-                        {...formik.getFieldProps("guests")}
+                        character={<UserOutlined />}
+                        count={6}
+                        defaultValue={formik.values.guests}
+                        onChange={(value) => formik.setFieldValue("guests", value)}
+                        style={{ fontSize: 36 }}
+                        value={formik.values.guests}
+                    // {...formik.getFieldProps("guests")}
                     />
-                    <FormErrorMessage>{formik.errors.guests}</FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={formik.errors.occasion && formik.touched.occcasion}>
-                    <label htmlFor="occasion">Occasion</label>
-                    <select
-                        id="occasion"
-                        name="occasion"
-                        {...formik.getFieldProps("occasion")}
-                    >
-                        <option>Select occasion</option>
-                        <option>Birthday</option>
-                        <option>Anniversary</option>
-                        <option>Engagement</option>
-                    </select>
-                    <FormErrorMessage>{formik.errors.occasion}</FormErrorMessage>
-                </FormControl>
-                <input type="submit" value="Confirm booking" />
-            </form>
+                    <Spacer />
+                    <Box><Text role="numberguest" fontSize="3xl" fontWeight="bold">{formik.values.guests}</Text></Box>
+                </Flex>
+                <FormErrorMessage>{formik.errors.guests}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={formik.errors.occasion && formik.touched.occcasion}>
+                <FormLabel htmlFor="occasion">Occasion</FormLabel>
+                <Select
+                    id="occasion"
+                    name="occasion"
+                    {...formik.getFieldProps("occasion")}
+                    size='lg'
+                >
+                    <option>Select occasion</option>
+                    <option>Birthday</option>
+                    <option>Anniversary</option>
+                    <option>Engagement</option>
+                </Select>
+                <FormErrorMessage>{formik.errors.occasion}</FormErrorMessage>
+            </FormControl>
+            <Button type="submit" 
+                size='lg' 
+                isDisabled={!formik.isValid}
+                isLoading={isLoading}
+            >
+            Confirm booking
+            </Button>
+        </form>
     );
 };
 

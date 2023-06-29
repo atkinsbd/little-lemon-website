@@ -1,39 +1,31 @@
-import {useState} from "react";
+import { useAlertContext } from "../context/alertContext";
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-/**
- * This is a custom hook that can be used to submit a form and simulate an API call
- * It uses Math.random() to simulate a random success or failure, with 50% chance of each
- */
 const useSubmit = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
+    const { onOpen, onFetching } = useAlertContext();
 
-  const submit = async (url, data) => {
+  const postReserve = async (url, data) => {
+
+    onFetching();
+
+    await wait(2000);
+
     const random = Math.random();
-    setLoading(true);
-    try {
-      await wait(2000);
-      if (random < 0.5) {
-        throw new Error("Something went wrong");
-      }
-      setResponse({
-        type: 'success',
-        message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
-      })
-    } catch (error) {
-      setResponse({
-        type: 'error',
-        message: 'Something went wrong, please try again later!',
-      })
-    } finally {
-      setLoading(false);
-    }
-    console.log(response);
-  };
 
-  return { isLoading, response, submit };
-}
+    if (random < 0.9) {
+      const bookedDate = new Date(data.date);
+      onOpen("success", `You have booked a table for ${data.guests} 
+                ${data.guests === 1 ? "person" : "people"} on ${bookedDate.getMonth()}/${bookedDate.getDate()} at ${data.time}.
+                We look forward to welcoming you!`);
+      return("success");
+    } else {
+      onOpen("error", "Something has gone wrong in our system, please try again or give us a call on 123456789.");
+      return("error");
+    }
+  }
+
+  return { postReserve };
+};
 
 export default useSubmit;

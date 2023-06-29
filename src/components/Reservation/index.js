@@ -3,10 +3,11 @@ import React from "react";
 import AlertMessage from "../AlertMessage";
 import BookingForm from "./BookingForm";
 import theme from '../../theme';
+import './style.css';
 
 const Reservation = () => {
     return (
-        <main>
+        <main className="reservation">
             <ChakraProvider theme={theme}>
                 <BookingForm />
                 <AlertMessage />
